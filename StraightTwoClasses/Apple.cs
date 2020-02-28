@@ -4,16 +4,25 @@ namespace TossAnAppleToYourWitcher
 {
     public class Apple
     {
+        public enum AppleKind
+        {
+            RedDelicious,
+            GrannySmith,
+            Golden,
+            PinkLady
+        }
+
+        public AppleKind Kind { get; }
         public Apple(AppleKind kind)
         {
-
+            this.Kind = kind;
         }
 
         public Box Box { get; private set; }
 
         public void MoveToBox(Box box, int position)
         {
-            if(box == null) throw new ArgumentNullException(nameof(box));
+            if (box == null) throw new ArgumentNullException(nameof(box));
             int oldPosition = -1;
             var oldBox = this.Box;
             if (oldBox != null)

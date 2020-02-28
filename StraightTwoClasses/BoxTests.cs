@@ -19,7 +19,7 @@ namespace TossAnAppleToYourWitcher
         public void CanAddAppleToBox()
         {
             var box = new Box(10);
-            var apple = new Apple(AppleKind.Golden);
+            var apple = new Apple(Apple.AppleKind.Golden);
             box.AddApple(apple, 0);
             Assert.IsTrue(object.ReferenceEquals(apple, box.Apples.ElementAt(0)), "Apple not found in box position 0");
             Assert.IsTrue(object.ReferenceEquals(box, apple.Box), "Apple is not set in the right box");
@@ -36,7 +36,7 @@ namespace TossAnAppleToYourWitcher
         public void CannotAddAppleOutsideBoxBoundaries()
         {
             var box = new Box(10);
-            var apple = new Apple(AppleKind.PinkLady);
+            var apple = new Apple(Apple.AppleKind.PinkLady);
             Assert.ThrowsException<IndexOutOfRangeException>(() => box.AddApple(apple, -1), "Apple can be inserted at -1");
             Assert.ThrowsException<IndexOutOfRangeException>(() => box.AddApple(apple, 10), "Apple can be inserted at 10");
         }
@@ -45,8 +45,8 @@ namespace TossAnAppleToYourWitcher
         public void CannotAddAppleInOccupiedPosition()
         {
             var box = new Box(10);
-            var granny = new Apple(AppleKind.GrannySmith);
-            var pink = new Apple(AppleKind.PinkLady);
+            var granny = new Apple(Apple.AppleKind.GrannySmith);
+            var pink = new Apple(Apple.AppleKind.PinkLady);
             box.AddApple(granny, 2);
             Assert.ThrowsException<ArgumentException>(() => box.AddApple(pink, 2));
         }
@@ -55,7 +55,7 @@ namespace TossAnAppleToYourWitcher
         public void CanRemoveApple()
         {
             var box = new Box(10);
-            var apple = new Apple(AppleKind.GrannySmith);
+            var apple = new Apple(Apple.AppleKind.GrannySmith);
             box.AddApple(apple, 5);
             box.RemoveApple(apple);
             Assert.IsNull(apple.Box);
@@ -66,7 +66,7 @@ namespace TossAnAppleToYourWitcher
         public void CanGetApplePosition()
         {
             var box = new Box(10);
-            var apple = new Apple(AppleKind.RedDelicious);
+            var apple = new Apple(Apple.AppleKind.RedDelicious);
             box.AddApple(apple, 7);
             Assert.AreEqual(7, box.GetApplePosition(apple));
         }
